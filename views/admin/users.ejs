@@ -1,7 +1,7 @@
 <%- include('../components/admin_template') %>
 <main id="content">
   <div class="bg-transparent">
-    <div class="sm:flex sm:items-center px-8 pt-4">
+    <div class="px-8 pt-4 sm:flex sm:items-center">
       <div class="sm:flex-auto">
         <h1 class="text-base font-medium leading-6 text-white"><%= req.translations.users %></h1>
       </div>
@@ -9,8 +9,8 @@
       
       </div>
     </div>
-    <div id="nodeTable" class="mt-6 w-full">
-      <table class="mt-6 w-full whitespace-nowrap text-left">
+    <div id="nodeTable" class="w-full mt-6">
+      <table class="w-full mt-6 text-left whitespace-nowrap">
         <colgroup>
           <col class="w-full sm:w-4/12" />
           <col class="lg:w-4/12" />
@@ -21,16 +21,16 @@
         </colgroup>
         <thead class="bg-gray-700/25">
           <tr>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= req.translations.name %></th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= req.translations.email %></th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= req.translations.information %></th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= req.translations.role %></th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= req.translations.edit %></th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= req.translations.remove %></th>
+            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"><%= req.translations.name %></th>
+            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"><%= req.translations.email %></th>
+            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"><%= req.translations.information %></th>
+            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"><%= req.translations.role %></th>
+            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"><%= req.translations.edit %></th>
+            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"><%= req.translations.remove %></th>
             <th><button
           id="createButton"
           type="button"
-          class="transition px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-blue-500 rounded-lg hover:bg-blue-600 hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-600 focus:text-white"
+          class="px-4 py-2 text-sm font-medium text-white transition bg-blue-500 border border-blue-500 rounded-lg hover:bg-blue-600 hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-600 focus:text-white"
         >
          <%= req.translations.createUserButton %>
         </button></th>
@@ -40,71 +40,72 @@
         </thead>
         <tbody class="divide-y divide-white/5">
           <% users.forEach(function(user) { %>
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><%= user.username %></td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"><%= user.email %></td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"><%= user.userId %></td>
+            <tr class="transition duration-300 ease-in bg-white/5 hover:bg-white/10 ">
+            
+              <td class="px-6 py-4 text-sm font-medium text-white whitespace-nowrap"><%= user.username %></td>
+              <td class="px-6 py-4 text-sm text-gray-400 whitespace-nowrap"><%= user.email %></td>
+              <td class="px-6 py-4 text-sm text-gray-400 whitespace-nowrap"><%= user.userId %></td>
               <% if (user.admin==true) { %>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"><%= req.translations.admin %></td>
+              <td class="px-6 py-4 text-sm text-gray-400 whitespace-nowrap"><%= req.translations.admin %></td>
               <% } else if (user.admin==false) { %>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"><%= req.translations.regularUserRole %></td>
+              <td class="px-6 py-4 text-sm text-gray-400 whitespace-nowrap"><%= req.translations.regularUserRole %></td>
               <% } %>
-              <td><a href="/admin/users/edit/<%= user.userId %>" class="px-6 py-4 whitespace-nowrap text-sm text-gray-400"> <%= req.translations.edit %></a></td>
-              <td><a id="removeButton"  type="button" class="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-user-id="<%= user.userId %>"> <%= req.translations.remove %></a></td>
+              <td><a href="/admin/users/edit/<%= user.userId %>" class="px-6 py-2 text-sm text-gray-900 transition rounded-full hover:bg-slate-500 bg-slate-100 whitespace-nowrap"> <%= req.translations.edit %></a></td>
+              <td><a id="removeButton" type="button" class="px-6 py-2 text-sm text-gray-400 transition rounded-full hover:bg-[#ba181bbd] bg-[#c1121f] whitespace-nowrap" data-user-id="<%= user.userId %>"> <%= req.translations.remove %></a></td>
 
             </tr>
           <% }); %>
         </tbody>
       </table>
     </div>
-    <div id="nodeForm" class="mt-6 px-8 w-full hidden">
+    <div id="nodeForm" class="hidden w-full px-8 mt-6">
       <form>
-        <label class="text-neutral-400 text-sm tracking-tight mb-2"
+        <label class="mb-2 text-sm tracking-tight text-neutral-400"
           ><%= req.translations.username %>:</label
         >
         <input
           id="userName"
           type="text"
           name="username"
-          class="rounded-xl focus:ring-transparent focus:border-transparent text-white text-sm mt-2 mb-6 w-96 items-center transition justify-left gap-16 hover:bg-white/5 px-4 py-2 flex border-white/5 bg-neutral-600/20 placeholder:text-white/20 text-white border border-black/10"
+          class="flex items-center gap-16 px-4 py-2 mt-2 mb-6 text-sm text-white transition border rounded-xl focus:ring-transparent focus:border-transparent w-96 justify-left hover:bg-white/5 border-white/5 bg-neutral-600/20 placeholder:text-white/20 border-black/10"
           placeholder="<%= req.translations.usernamePlaceholder %>"
         />
         <input
           id="email"
           type="email"
           name="email"
-          class="rounded-xl focus:ring-transparent focus:border-transparent text-white text-sm mt-2 mb-6 w-96 items-center transition justify-left gap-16 hover:bg-white/5 px-4 py-2 flex border-white/5 bg-neutral-600/20 placeholder:text-white/20 text-white border border-black/10"
+          class="flex items-center gap-16 px-4 py-2 mt-2 mb-6 text-sm text-white transition border rounded-xl focus:ring-transparent focus:border-transparent w-96 justify-left hover:bg-white/5 border-white/5 bg-neutral-600/20 placeholder:text-white/20 border-black/10"
           placeholder="<%= req.translations.emailPlaceholder %>"
         />
 
-        <label class="text-neutral-400 text-sm tracking-tight mb-2"
+        <label class="mb-2 text-sm tracking-tight text-neutral-400"
           ><%= req.translations.passwordLabel %>:</label
         >
         <input
           id="userPass"
           type="password"
           name="password"
-          class="rounded-xl focus:ring-transparent focus:border-transparent text-white text-sm mt-2 mb-6 w-96 items-center transition justify-left gap-16 hover:bg-white/5 px-4 py-2 flex border-white/5 bg-neutral-600/20 placeholder:text-white/20 text-white border border-black/10"
+          class="flex items-center gap-16 px-4 py-2 mt-2 mb-6 text-sm text-white transition border rounded-xl focus:ring-transparent focus:border-transparent w-96 justify-left hover:bg-white/5 border-white/5 bg-neutral-600/20 placeholder:text-white/20 border-black/10"
           placeholder="******"
         />
 
-        <label class="text-neutral-400 text-sm tracking-tight mb-2"
+        <label class="mb-2 text-sm tracking-tight text-neutral-400"
           ><%= req.translations.admin %>:</label
         >
         <select
           id="userAdmin"
           name="admin"
-          class="rounded-xl focus:ring-transparent focus:border-transparent text-white text-sm mt-2 mb-6 w-96 items-center transition justify-left gap-16 hover:bg-white/5 px-4 py-2 flex border-white/5 bg-neutral-600/20 placeholder:text-white/20 text-white border border-black/10"
+          class="flex items-center gap-16 px-4 py-2 mt-2 mb-6 text-sm text-white transition border rounded-xl focus:ring-transparent focus:border-transparent w-96 justify-left hover:bg-white/5 border-white/5 bg-neutral-600/20 placeholder:text-white/20 border-black/10"
         >
           <option value="true"><%= req.translations.true %></option>
           <option value="false"><%= req.translations.false %></option>
         </select>
 
-        <label class="text-neutral-400 text-sm tracking-tight mb-2"><%= req.translations.verifiedStatus %>:</label>
+        <label class="mb-2 text-sm tracking-tight text-neutral-400"><%= req.translations.verifiedStatus %>:</label>
         <select
           id="userVerified"
           name="verified"
-          class="rounded-xl focus:ring-transparent focus:border-transparent text-white text-sm mt-2 mb-6 w-96 items-center transition justify-left gap-16 hover:bg-white/5 px-4 py-2 flex border-white/5 bg-neutral-600/20 placeholder:text-white/20 text-white border border-black/10"
+          class="flex items-center gap-16 px-4 py-2 mt-2 mb-6 text-sm text-white transition border rounded-xl focus:ring-transparent focus:border-transparent w-96 justify-left hover:bg-white/5 border-white/5 bg-neutral-600/20 placeholder:text-white/20 border-black/10"
         >
         <option value="true"><%= req.translations.true %></option>
         <option value="false"><%= req.translations.false %></option>
