@@ -49,9 +49,9 @@ router.get("/dashboard", isAuthenticated, async (req, res) => {
     }
     
     const default_resources = {
-      ram: 4096,
-      disk: 10,
-      cores: 1
+      ram: config.packages.list.default.ram,
+      disk: config.packages.list.default.disk,
+      cores: config.packages.list.default.cpu
     };
     
     const max_resources = await db.get('resources-'+ req.user.email)
