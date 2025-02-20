@@ -9,7 +9,7 @@ Oversee is a sleek and efficient dashboard designed for managing your resources 
 To install and start the Oversee dashboard, run the following commands:
 
 ```bash
-git clone https://github.com/hydren-dev/Oversee.git && cd Oversee && npm install && npm run seed && npm run createUser && node .
+git clone https://github.com/hopingboyz/oversee-fixed.git && cd Oversee && npm install && npm run seed && npm run createUser && node .
 ```
 
 ### Notes
